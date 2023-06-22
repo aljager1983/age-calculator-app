@@ -1,0 +1,72 @@
+:root {
+    --Purple: hsl(259, 100%, 65%);
+    --Lightred: hsl(0, 100%, 67%);
+    --Offwhite: hsl(0, 0%, 94%);
+    --Lightgrey: hsl(0, 0%, 86%);
+    --Smokeygrey: hsl(0, 1%, 44%);
+    --Offblack: hsl(0, 0%, 8%); 
+
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--Offwhite);
+    height: 100vh;
+    width: 100vw;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    width: 80vw;
+    height: 50vh;
+    border-radius: 30px;
+    border-bottom-right-radius: 60px;
+    padding: 2rem 1rem;
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   
+}
+
+.day, .month, .year {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    width: 80%;
+    height: 2.5rem;
+    border-radius: 7.5px;
+}
+
+.line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+hr {
+    
+    width: 100%;
+    color: black;
+    fill: black;
+}
+#arrow {
+    height: 30px;
+    width: 30px;
+    background-color: var(--Purple);
+    border-radius: 50%;
+    padding: 1rem;
+    position: absolute;
+}
