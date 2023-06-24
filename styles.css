@@ -70,3 +70,8 @@ hr {
     padding: 1rem;
     position: absolute;
 }
+
+#validDay, #validMon, #validYr {
+    font-size: .7rem;
+    color: var(--Lightred);
+}
