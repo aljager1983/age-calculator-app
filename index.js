@@ -18,8 +18,8 @@ let months = 0;
 let days = 0;
 let m = 0;
 
-convert.addEventListener("click", function() {
-    
+convert.addEventListener("click", function(event) {
+    event.preventDefault();
     // let str = "28-04-1991"; --old format
     let str = day.value + "-" + month.value + "-" + year.value;
     let d = new Date(...prepareDate(str));
@@ -27,8 +27,16 @@ convert.addEventListener("click", function() {
     let currentYear = date.getFullYear();
     let currentMonth = date.getMonth() + 1;
     let currentDay = date.getDate();
+    
+    let enteredDay = Number(day.value);
+    let enteredMonth = Number(month.value);
+    let enteredYear = Number(year.value);
+
     let diffTime = Date.now() - d.getTime();
     
+    
+
+	
     //convert millisecs
     let msToSec = diffTime / 1000;          //to seconds
     let secToMin = msToSec / 60;        //to minutes
@@ -40,7 +48,7 @@ convert.addEventListener("click", function() {
     
     let dayToYr = diffTime / (1000 * 60 * 60 * 24 * 365.25);
 
-    years = Math.trunc( dayToYr);
+    // years = Math.trunc( dayToYr);
     
     
     //check if inputs are empty
@@ -51,7 +59,7 @@ convert.addEventListener("click", function() {
     }
 
     let daysUntrunc = (currentMonth - months) * 31;
-    days = Math.trunc(daysUntrunc);
+    // days = Math.trunc(daysUntrunc);
 
     // if(month.value <= currentMonth) {
     // months = currentMonth - month.value;
@@ -60,19 +68,19 @@ convert.addEventListener("click", function() {
     // }
 
 
-    if(day.value <= currentDay) {
-        days = currentDay - day.value;
-        if(month.value <= currentMonth) {
-            months = currentMonth - month.value;
-            if(month.value == currentMonth && day.value == currentDay) {
-                years += 1;
-            }
-        } else {
-            months = 12 - Math.abs(Number(month.value) - currentMonth);
-        }
-    } else {
-        days = 31 - Math.abs(Number(day.value) - currentDay);
-    }
+    // if(day.value <= currentDay) {
+    //     days = currentDay - day.value;
+    //     if(month.value <= currentMonth) {
+    //         months = currentMonth - month.value;
+    //         if(month.value == currentMonth && day.value == currentDay) {
+    //             years += 1;
+    //         }
+    //     } else {
+    //         months = 12 - Math.abs(Number(month.value) - currentMonth);
+    //     }
+    // } else {
+    //     days = 31 - Math.abs(Number(day.value) - currentDay);
+    // }
 
     // if(day.value <= currentDay && currentMonth >= month.value) {
     //     months = currentMonth - month.value;
@@ -81,6 +89,23 @@ convert.addEventListener("click", function() {
     //     months = 12 - Math.abs(Number(month.value) - currentMonth);
     //     days = 31 - Math.abs(Number(day.value) - currentDay);
     // }
+
+    //below logic cc from captain anonymous of https://codepen.io/pen/?editors=0010
+    if (currentDay < enteredDay) {
+		days = (currentDay - enteredDay + 31);
+		currentMonth -=  1;
+	} else {
+		days = (currentDay - enteredDay);
+	}
+
+	if (currentMonth < enteredMonth) {
+		months = (currentMonth - enteredMonth + 12) ;
+		currentYear -=  1;
+	} else {
+		months = (currentMonth - enteredMonth);
+	}
+
+    years = currentYear - enteredYear;
 
         if(day.value != "") {
             if(month.value != "") {
