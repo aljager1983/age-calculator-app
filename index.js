@@ -10,19 +10,13 @@ const validMon = document.getElementById("validMon");
 const validYr = document.getElementById("validYr");
 
 let date = new Date();
-let maxDay = 31;
-let daysOfFeb = 0;
 
 let years = 0;
 let months = 0;
 let days = 0;
-let m = 0;
 
 convert.addEventListener("click", function(event) {
-    event.preventDefault();
-    // let str = "28-04-1991"; --old format
-    let str = day.value + "-" + month.value + "-" + year.value;
-    let d = new Date(...prepareDate(str));
+    event.preventDefault(); //
     
     let currentYear = date.getFullYear();
     let currentMonth = date.getMonth() + 1;
@@ -31,66 +25,16 @@ convert.addEventListener("click", function(event) {
     let enteredDay = Number(day.value);
     let enteredMonth = Number(month.value);
     let enteredYear = Number(year.value);
-
-    let diffTime = Date.now() - d.getTime();
-    
-    
-
-	
-    //convert millisecs
-    let msToSec = diffTime / 1000;          //to seconds
-    let secToMin = msToSec / 60;        //to minutes
-    let minToHr = secToMin / 60;        //to hour
-    let hrToDay = minToHr / 24;         //to day
-    // let dayToYr = hrToDay / 365.25;
-    let dayToMo = hrToDay / 31;         //to month
-    let moToYe  = dayToMo / 12;         //to year
-    
-    let dayToYr = diffTime / (1000 * 60 * 60 * 24 * 365.25);
-
-    // years = Math.trunc( dayToYr);
-    
     
     //check if inputs are empty
     if(day.value == "" && month.value == "" && year.value == "") {
-        validYr.innerHTML = "Year must not be empty";
-        validMon.innerHTML = "Month must not be empty";
-        validDay.innerHTML = "Day must not be empty";
+        validYr.innerHTML = "This field is required";
+        validMon.innerHTML = "This field is required";
+        validDay.innerHTML = "This field is required";
     }
 
-    let daysUntrunc = (currentMonth - months) * 31;
-    // days = Math.trunc(daysUntrunc);
-
-    // if(month.value <= currentMonth) {
-    // months = currentMonth - month.value;
-    // } else {
-    //     months = 12 - Math.abs(Number(month.value) - currentMonth);
-    // }
-
-
-    // if(day.value <= currentDay) {
-    //     days = currentDay - day.value;
-    //     if(month.value <= currentMonth) {
-    //         months = currentMonth - month.value;
-    //         if(month.value == currentMonth && day.value == currentDay) {
-    //             years += 1;
-    //         }
-    //     } else {
-    //         months = 12 - Math.abs(Number(month.value) - currentMonth);
-    //     }
-    // } else {
-    //     days = 31 - Math.abs(Number(day.value) - currentDay);
-    // }
-
-    // if(day.value <= currentDay && currentMonth >= month.value) {
-    //     months = currentMonth - month.value;
-    //     days = currentDay - day.value;
-    // } else {
-    //     months = 12 - Math.abs(Number(month.value) - currentMonth);
-    //     days = 31 - Math.abs(Number(day.value) - currentDay);
-    // }
-
-    //below logic cc from captain anonymous of https://codepen.io/pen/?editors=0010
+    //below logic cc from Asif Mughal of https://www.codehim.com/date-time/javascript-calculate-age-in-years-months-days/#:~:text=How%20to%20Calculate%20Age%20in%20Years%2C%20Months%2C%20and,tag%20before%20closing%20the%20body%20tag%20and%20done.
+    //start of calendear logic
     if (currentDay < enteredDay) {
 		days = (currentDay - enteredDay + 31);
 		currentMonth -=  1;
@@ -106,21 +50,23 @@ convert.addEventListener("click", function(event) {
 	}
 
     years = currentYear - enteredYear;
+    //end of calendar logic
 
+    //empty entries checker
         if(day.value != "") {
             if(month.value != "") {
                 if(year.value != "" ){
 
                 }else  {
                     validMon.innerHTML = "";
-                    return validYr.innerHTML = "Year must not be empty";
+                    return validYr.innerHTML = "This field is required";
                 }
             }else {
                 validDay.innerHTML = "";
-                return validMon.innerHTML = "Month must not be empty";
+                return validMon.innerHTML = "This field is required";
             }
         } else {
-            return validDay.innerHTML = "Day must not be empty";
+            return validDay.innerHTML = "This field is required";
         }
    
 
@@ -139,7 +85,7 @@ convert.addEventListener("click", function(event) {
         return validMon.innerHTML = "Must be a valid Month";
     }
    
-    if(day.value > 0 && day.value < maxDay) {
+    if(day.value > 0 && day.value <= 31) {
         validDay.innerHTML = "";
     } else {
         emptyRes();
@@ -147,7 +93,7 @@ convert.addEventListener("click", function(event) {
         
     }
 
-    if(month.value == 2 && daysOfFeb == 29 && day.value <= 29) {
+    if(month.value == 2 && day.value <= 29) {
         console.log("month of february and its leap year");
         result();
     } else if(day.value <= 31 && (month.value == 0 || month.value == 1 || month.value == 3 )) {
@@ -159,19 +105,9 @@ convert.addEventListener("click", function(event) {
         validDay.innerHTML = "Must be valid day";
     }
 
-    console.log("Month " + months);
-    console.log("day " + days);
-    
 }
     
 )
-
-
-    function prepareDate(d) {
-        [d, m, y] = d.split("-"); //Split the string
-        return [y, m - 1, d]; //Return as an array with y,m,d sequence
-    }
-    
     function result() {
     monthsRes.innerHTML = months + " Months";
     daysRes.innerHTML = days + " Days";
