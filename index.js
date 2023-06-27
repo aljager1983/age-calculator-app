@@ -16,6 +16,7 @@ let daysOfFeb = 0;
 let years = 0;
 let months = 0;
 let days = 0;
+let m = 0;
 
 convert.addEventListener("click", function() {
     
@@ -41,6 +42,7 @@ convert.addEventListener("click", function() {
 
     years = Math.trunc( dayToYr);
     
+    
     //check if inputs are empty
     if(day.value == "" && month.value == "" && year.value == "") {
         validYr.innerHTML = "Year must not be empty";
@@ -48,21 +50,37 @@ convert.addEventListener("click", function() {
         validDay.innerHTML = "Day must not be empty";
     }
 
-    
-    if(month.value <= currentMonth) {
-    months = currentMonth - month.value;
-    } else {
-        months = 12 - Math.abs(Number(month.value) - currentMonth);
-    }
     let daysUntrunc = (currentMonth - months) * 31;
     days = Math.trunc(daysUntrunc);
 
+    // if(month.value <= currentMonth) {
+    // months = currentMonth - month.value;
+    // } else {
+    //     months = 12 - Math.abs(Number(month.value) - currentMonth);
+    // }
+
+
     if(day.value <= currentDay) {
         days = currentDay - day.value;
+        if(month.value <= currentMonth) {
+            months = currentMonth - month.value;
+            if(month.value == currentMonth && day.value == currentDay) {
+                years += 1;
+            }
+        } else {
+            months = 12 - Math.abs(Number(month.value) - currentMonth);
+        }
     } else {
-        months -= 1;
-        days = 30 - Math.abs(Number(day.value) - currentDay);
+        days = 31 - Math.abs(Number(day.value) - currentDay);
     }
+
+    // if(day.value <= currentDay && currentMonth >= month.value) {
+    //     months = currentMonth - month.value;
+    //     days = currentDay - day.value;
+    // } else {
+    //     months = 12 - Math.abs(Number(month.value) - currentMonth);
+    //     days = 31 - Math.abs(Number(day.value) - currentDay);
+    // }
 
         if(day.value != "") {
             if(month.value != "") {
@@ -116,7 +134,8 @@ convert.addEventListener("click", function() {
         validDay.innerHTML = "Must be valid day";
     }
 
-    console.log(currentDay)
+    console.log("Month " + months);
+    console.log("day " + days);
     
 }
     
