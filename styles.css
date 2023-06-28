@@ -62,15 +62,12 @@ main {
     flex-direction: column;
     font-size: .65rem;
     align-content: space-evenly;
-    
 }
 
 .dateLabel {
     padding-bottom: .25rem;
 }
-/* .month {
-    padding: 1rem 0;
-} */
+
 input {
     width: 55px;
     height: 2.75rem;
@@ -130,11 +127,9 @@ span {
     color: var(--Purple);
 }
 @media screen and (min-width:376px) {
+  
     main {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        background-color: white;
+       
         width: 60vw;
         height: 65vh;
         border-radius: 30px;
@@ -142,9 +137,48 @@ span {
         padding: 2rem 1rem;
     }
 
+    .date {
+        display: flex;
+        color: var(--Smokeygrey);
+        padding: 0 1.5rem;
+        gap: 2rem;
+        font-weight: 400;
+        letter-spacing: 3px;
+    }
+    
+    .day, .month, .year {
+        display: flex;
+        flex-direction: column;
+        font-size: 1rem;
+        align-content: space-evenly;
+    }
+
+    .dateLabel {
+        padding-bottom: .25rem;
+    }
+    
+    input {
+        width: 150px;
+        height: 4rem;
+        font-size: 1.5rem;
+    }
+
+    #arrow {
+        height: 50px;
+        width: 50px;
+        padding: 1rem;
+        position: absolute;
+    }
+
     .line {
         display: flex;
         align-items: center;
         justify-content: end;
+    }
+
+    .result {
+        line-height: 100%;
+        font-size: 7rem;
+       
     }
 }

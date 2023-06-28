@@ -112,12 +112,14 @@ convert.addEventListener("click", function(event) {
     monthsRes.innerHTML = months ;
     daysRes.innerHTML = days ;
     yearsRes.innerHTML = years ;
+    animateValue(yearsRes, 10, years, 5000);
     }
     
     function emptyRes() {
-    monthsRes.innerHTML = " --months";
-    daysRes.innerHTML =  " --days";
-    yearsRes.innerHTML =  " --years";
+    monthsRes.innerHTML = "--";
+    daysRes.innerHTML =  "--";
+    yearsRes.innerHTML =  " --";
+
     }
 
     function size () {
@@ -125,3 +127,21 @@ convert.addEventListener("click", function(event) {
         let w = window.innerWidth;
         scrSize.innerHTML = w + "x" + h + " wxh";
     }
+
+    function animateValue(id, start, end, duration) {
+        if (start === end) return;
+        var range = end - start;
+        var current = start;
+        var increment = end > start? 1 : -1;
+        var stepTime = Math.abs(Math.floor(duration / range));
+        var obj = document.getElementById(id);
+        var timer = setInterval(function() {
+            current += increment;
+            obj.innerHTML = current;
+            if (current == end) {
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
+    
+    
