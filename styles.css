@@ -8,8 +8,15 @@
      
 }
 
-* {
+html {
+    box-sizing: border-box ;
+}
+
+*, *:before, *:after {
+    /* box-sizing: inherit; */
     font-family: 'Poppins', sans-serif;
+    outline-style: solid;
+    outline-width: 1px;
 }
 
 body {
@@ -20,9 +27,14 @@ body {
     margin: 0;
     background-color: var(--Offwhite);
     height: 100vh;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
+#wh {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 main {
     display: flex;
     flex-direction: column;
@@ -32,35 +44,44 @@ main {
     height: 50vh;
     border-radius: 30px;
     border-bottom-right-radius: 80px;
-    padding: 2rem 1rem;
+    padding: 2rem 0;
 }
 
 .date {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-row: 1/2; */
     color: var(--Smokeygrey);
+    padding: 0 1.5rem;
+    gap: 1rem;
 }
 
 .day, .month, .year {
     display: flex;
     flex-direction: column;
-    align-items: baseline;
+    /* align-items: baseline; */
     align-content: space-evenly;
+    /* gap: 1rem; */
+    /* padding: 0.5rem; */
 }
 
+/* .month {
+    padding: 1rem 0;
+} */
 input {
-    width: 70%;
+    width: 55px;
     height: 2.5rem;
     border-radius: 7.5px;
     font-size: 1.2rem;
     font-weight: 700;
     padding: .5rem;
-   
 }
 
 .line {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
 }
 
 hr {
@@ -83,6 +104,9 @@ hr {
     color: var(--Lightred);
 }
 
+.result {
+    padding: 1rem;
+}
 @media screen and (min-width:376px) {
     main {
         display: flex;

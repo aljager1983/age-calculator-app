@@ -8,7 +8,7 @@ const daysRes = document.getElementById("daysRes");
 const validDay = document.getElementById("validDay");
 const validMon = document.getElementById("validMon");
 const validYr = document.getElementById("validYr");
-
+const scrSize = document.getElementById("wh");
 let date = new Date();
 
 let years = 0;
@@ -120,4 +120,8 @@ convert.addEventListener("click", function(event) {
     yearsRes.innerHTML =  " --years";
     }
 
-    
+    function size () {
+        let h = window.innerHeight;
+        let w = window.innerWidth;
+        scrSize.innerHTML = w + "x" + h + " wxh";
+    }
