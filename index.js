@@ -69,7 +69,7 @@ convert.addEventListener("click", function(event) {
             return validDay.innerHTML = "This field is required";
         }
    
-
+                
     //year, month, day validator
     if(year.value <= date.getFullYear() && year.value != 0) {
             validYr.innerHTML = "";
@@ -109,9 +109,9 @@ convert.addEventListener("click", function(event) {
     
 )
     function result() {
-    monthsRes.innerHTML = months + " Months";
-    daysRes.innerHTML = days + " Days";
-    yearsRes.innerHTML = years + " Years";
+    monthsRes.innerHTML = months ;
+    daysRes.innerHTML = days ;
+    yearsRes.innerHTML = years ;
     }
     
     function emptyRes() {
