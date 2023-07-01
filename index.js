@@ -111,12 +111,16 @@ convert.addEventListener("click", function(event) {
     
 )
     function result() {
-    monthsRes.innerHTML = months ;
-    daysRes.innerHTML = days ;
+    // monthsRes.innerHTML = months ;
+    // daysRes.innerHTML = days ;
     // yearsRes.innerHTML = years ;
-    counts = setInterval(updated, 100);
-    // animateValue(yearsRes, 10, 50, 5000);
-    
+    uptoYrs = 0;
+    uptoMos = 0;
+    uptoDays = 0;
+    countsYrs = setInterval(updateYrs, 75);
+    countsMons = setInterval(updateMnts, 75);
+    countsDays = setInterval(updateDays, 75);
+
     }
     
     function emptyRes() {
@@ -125,37 +129,51 @@ convert.addEventListener("click", function(event) {
     yearsRes.innerHTML =  " --";
     }
 
+    //screenschecking
     function size () {
         let h = window.innerHeight;
         let w = window.innerWidth;
         scrSize.innerHTML = w + "x" + h + " wxh";
     }
 
-    // function animateValue(id, start, end, duration) {
-    //     if (start === end) return;
-    //     var range = end - start;
-    //     var current = start;
-    //     var increment = end > start? 1 : -1;
-    //     var stepTime = Math.abs(Math.floor(duration / range));
-    //     var obj = document.getElementById(id);
-    //     var timer = setInterval(function() {
-    //         current += increment;
-    //         obj.innerHTML = current;
-    //         if (current == end) {
-    //             clearInterval(timer);
-    //         }
-    //         console.log(obj);
-    //     }, stepTime);
-        
-    // }
     
-    let counts = 0;
-    let upto = 0;
+    let countsYrs = 0;
+    let countsMons = 0;
+    let countsDays = 0;
+    let uptoYrs = 0;
+    let uptoMos = 0;
+    let uptoDays = 0;
 
-    function updated() {
-        let count = document.getElementById("yearsRes");
-        count.innerHTML = ++upto;
-        if (upto === years) {
-            clearInterval(counts);
+    function updateYrs() {
+        if(uptoYrs == years) {
+            return;
+        } else {
+        yearsRes.innerHTML = ++uptoYrs;
+        if (uptoYrs == years) {
+            clearInterval(countsYrs);
+            }
+        }
+        
+    }
+
+    function updateMnts() {
+        if(uptoMos == months) {
+            return;
+        } else {
+         monthsRes.innerHTML = ++uptoMos;
+        if (uptoMos == months) {
+            clearInterval(countsDays);
+            }
+        }
+    }
+
+    function updateDays() {
+        if(uptoDays == days) {
+            return;
+        } else {
+            daysRes.innerHTML = ++uptoDays;
+        if (uptoDays == days) {
+            clearInterval(countsDays);
+            }
         }
     }
