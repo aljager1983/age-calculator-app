@@ -15,6 +15,8 @@ let years = 0;
 let months = 0;
 let days = 0;
 
+
+
 convert.addEventListener("click", function(event) {
     event.preventDefault(); //
     
@@ -111,15 +113,16 @@ convert.addEventListener("click", function(event) {
     function result() {
     monthsRes.innerHTML = months ;
     daysRes.innerHTML = days ;
-    yearsRes.innerHTML = years ;
-    animateValue(yearsRes, 10, years, 5000);
+    // yearsRes.innerHTML = years ;
+    counts = setInterval(updated, 100);
+    // animateValue(yearsRes, 10, 50, 5000);
+    
     }
     
     function emptyRes() {
     monthsRes.innerHTML = "--";
     daysRes.innerHTML =  "--";
     yearsRes.innerHTML =  " --";
-
     }
 
     function size () {
@@ -128,20 +131,31 @@ convert.addEventListener("click", function(event) {
         scrSize.innerHTML = w + "x" + h + " wxh";
     }
 
-    function animateValue(id, start, end, duration) {
-        if (start === end) return;
-        var range = end - start;
-        var current = start;
-        var increment = end > start? 1 : -1;
-        var stepTime = Math.abs(Math.floor(duration / range));
-        var obj = document.getElementById(id);
-        var timer = setInterval(function() {
-            current += increment;
-            obj.innerHTML = current;
-            if (current == end) {
-                clearInterval(timer);
-            }
-        }, stepTime);
+    // function animateValue(id, start, end, duration) {
+    //     if (start === end) return;
+    //     var range = end - start;
+    //     var current = start;
+    //     var increment = end > start? 1 : -1;
+    //     var stepTime = Math.abs(Math.floor(duration / range));
+    //     var obj = document.getElementById(id);
+    //     var timer = setInterval(function() {
+    //         current += increment;
+    //         obj.innerHTML = current;
+    //         if (current == end) {
+    //             clearInterval(timer);
+    //         }
+    //         console.log(obj);
+    //     }, stepTime);
+        
+    // }
+    
+    let counts = 0;
+    let upto = 0;
+
+    function updated() {
+        let count = document.getElementById("yearsRes");
+        count.innerHTML = ++upto;
+        if (upto === years) {
+            clearInterval(counts);
+        }
     }
-    
-    

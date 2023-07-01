@@ -25,7 +25,7 @@ body {
     align-items: center;
     padding: 0;
     margin: 0;
-    background-color: var(--Offwhite);
+    background-color: black;
     height: 100vh;
     /* width: 100vw; */
 }
@@ -79,7 +79,7 @@ input {
 
 }
 
-input:hover, input[type=text]:focus {
+input:hover, input:focus {
     cursor: pointer;
     border: 1px solid var(--Purple);
 }
@@ -117,15 +117,18 @@ hr {
 
 .result {
     padding: 0 1.5rem 2rem 1.5rem;
-    font-size: 2.75rem;
+    font-size: clamp(2.5rem, 10vw, 6rem);
     font-weight: 700;
     font-style: italic;
+    line-height: 120%;
 }
 
 span {
     padding-right: .5rem;
     color: var(--Purple);
 }
+
+
 @media screen and (min-width:376px) {
   
     main {
@@ -178,7 +181,8 @@ span {
 
     .result {
         line-height: 100%;
-        font-size: 7rem;
+        
        
     }
 }
+
