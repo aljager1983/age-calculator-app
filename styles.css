@@ -27,7 +27,7 @@ body {
     margin: 0;
     background-color: var(--Offwhite);
     height: 100vh;
-    /* width: 100vw; */
+   
 }
 
 #wh {
@@ -40,7 +40,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     background-color: white;
-    width: 80vw;
+    width: 90vw;
     height: 60vh;
     border-radius: 30px;
     border-bottom-right-radius: 80px;
@@ -69,7 +69,8 @@ main {
 }
 
 input {
-    width: 55px;
+    /* width: 63px; */
+    width: clamp(50px, 14vw + .75rem,  85px);
     height: 2.75rem;
     border: 1px solid var(--Smokeygrey);
     border-radius: 7.5px;
@@ -112,7 +113,7 @@ hr {
 
 #validDay, #validMon, #validYr {
     font-size: .5rem;
-    
+    letter-spacing: 2px;
     color: var(--Lightred);
 }
 
@@ -129,7 +130,11 @@ span {
     color: var(--Purple);
 }
 
-
+@media screen and (min-height: 620px) and (max-height: 660px){
+    .result {
+        font-size: 4rem;
+    }
+}
 @media screen and (min-width:376px) {
   
     main {

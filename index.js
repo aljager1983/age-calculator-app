@@ -15,6 +15,13 @@ let years = 0;
 let months = 0;
 let days = 0;
 
+//for the countdown animations
+    let countsYrs = 0;
+    let countsMons = 0;
+    let countsDays = 0;
+    let uptoYrs = 0;
+    let uptoMos = 0;
+    let uptoDays = 0;
 
 
 convert.addEventListener("click", function(event) {
@@ -34,7 +41,8 @@ convert.addEventListener("click", function(event) {
         validMon.innerHTML = "This field is required";
         validDay.innerHTML = "This field is required";
     }
-
+    
+    
     //below logic cc from Asif Mughal of https://www.codehim.com/date-time/javascript-calculate-age-in-years-months-days/#:~:text=How%20to%20Calculate%20Age%20in%20Years%2C%20Months%2C%20and,tag%20before%20closing%20the%20body%20tag%20and%20done.
     //start of calendear logic
     if (currentDay < enteredDay) {
@@ -72,7 +80,7 @@ convert.addEventListener("click", function(event) {
         }
    
                 
-    //year, month, day validator
+    //year, month, day entries validator
     if(year.value <= date.getFullYear() && year.value != 0) {
             validYr.innerHTML = "";
     } else {
@@ -92,27 +100,30 @@ convert.addEventListener("click", function(event) {
     } else {
         emptyRes();
         return validDay.innerHTML = "Must be valid day";
+
+    }
+
+    //leap year checker
+    if ((0 == enteredYear % 4) && (0 != enteredYear % 100) || (0 == enteredYear % 400)) {
+        console.log(enteredYear + ' is a leap year');
+        if(month.value == 2 && day.value <= 29) {
+            result();
+            return;
+        }
+    } else {
+        console.log(enteredYear + ' is not a leap year');
+        if(month.value == 2 && day.value <= 28) {
+            result();
+            return;
+        } else {
+            emptyRes();
+            validDay.innerHTML = "Must be valid day";
+            return;
+        }
         
     }
 
-    if(month.value == 2 && day.value <= 29) {
-        console.log("month of february and its leap year");
-        result();
-    } else if(day.value <= 31 && (  month.value == 1 || 
-                                    month.value == 3 || 
-                                    month.value == 5 || 
-                                    month.value == 7 ||
-                                    month.value == 8 ||
-                                    month.value == 10 ||
-                                    month.value == 12)) {
-        result();
-    } else if(day.value <= 30) {
-        result();
-    }else 
-     {
-        validDay.innerHTML = "Must be valid day";
-        emptyRes();
-    }
+    
 
 }
     
@@ -143,13 +154,6 @@ convert.addEventListener("click", function(event) {
         scrSize.innerHTML = w + "x" + h + " wxh";
     }
 
-    
-    let countsYrs = 0;
-    let countsMons = 0;
-    let countsDays = 0;
-    let uptoYrs = 0;
-    let uptoMos = 0;
-    let uptoDays = 0;
 
     function updateYrs() {
         if(uptoYrs == years) {
