@@ -98,13 +98,20 @@ convert.addEventListener("click", function(event) {
     if(month.value == 2 && day.value <= 29) {
         console.log("month of february and its leap year");
         result();
-    } else if(day.value <= 31 && (month.value == 0 || month.value == 1 || month.value == 3 )) {
+    } else if(day.value <= 31 && (  month.value == 1 || 
+                                    month.value == 3 || 
+                                    month.value == 5 || 
+                                    month.value == 7 ||
+                                    month.value == 8 ||
+                                    month.value == 10 ||
+                                    month.value == 12)) {
         result();
     } else if(day.value <= 30) {
         result();
     }else 
      {
         validDay.innerHTML = "Must be valid day";
+        emptyRes();
     }
 
 }
@@ -162,7 +169,7 @@ convert.addEventListener("click", function(event) {
         } else {
          monthsRes.innerHTML = ++uptoMos;
         if (uptoMos == months) {
-            clearInterval(countsDays);
+            clearInterval(countsMons);
             }
         }
     }
