@@ -99,7 +99,7 @@ convert.addEventListener("click", function(event) {
         validDay.innerHTML = "";
     } else {
         emptyRes();
-        return validDay.innerHTML = "Must be valid day";
+        validDay.innerHTML = "Mbe valid day";
 
     }
 
@@ -114,20 +114,30 @@ convert.addEventListener("click", function(event) {
         console.log(enteredYear + ' is not a leap year');
         if(month.value == 2 && day.value <= 28) {
             result();
-            return;
-        } else {
-            emptyRes();
-            validDay.innerHTML = "Must be valid day";
-            return;
-        }
-        
+            
+        } else if(day.value <= 31 && (  month.value == 1 || 
+            month.value == 3 || 
+            month.value == 5 || 
+            month.value == 7 ||
+            month.value == 8 ||
+            month.value == 10 ||
+            month.value == 12)) {
+        result();
+        } else if(day.value <= 30 && (  month.value == 4 ||
+            month.value == 6 ||
+            month.value == 9 ||
+            month.value == 11)) {
+        result();
+        }else 
+        {
+        validDay.innerHTML = "e valid day";
+        emptyRes();
+        }   
     }
 
-    
-
-}
-    
+    }
 )
+
     function result() {
     // monthsRes.innerHTML = months ;
     // daysRes.innerHTML = days ;
