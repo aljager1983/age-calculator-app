@@ -26,8 +26,8 @@ body {
     padding: 0;
     margin: 0;
     background-color: var(--Offwhite);
-    height: 100vh;
-   
+    height: 100vh;  
+    width: 100vw;
 }
 
 #wh {

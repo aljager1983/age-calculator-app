@@ -105,7 +105,7 @@ convert.addEventListener("click", function(event) {
 
     //leap year checker
     if ((0 == enteredYear % 4) && (0 != enteredYear % 100) || (0 == enteredYear % 400)) {
-        console.log(enteredYear + ' is a leap year');
+        // console.log(enteredYear + ' is a leap year');
         if(month.value == 2 && day.value <= 29) {
             result();
             return;
@@ -114,7 +114,7 @@ convert.addEventListener("click", function(event) {
             validDay.innerHTML = "Must be a valid day";
         }
     } else {
-        console.log(enteredYear + ' is not a leap year');
+        // console.log(enteredYear + ' is not a leap year');
         if(month.value == 2 && day.value <= 28) {
             result();
             
