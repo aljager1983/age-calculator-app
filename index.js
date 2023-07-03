@@ -109,7 +109,9 @@ convert.addEventListener("click", function(event) {
         if(month.value == 2 && day.value <= 29) {
             result();
             return;
-        }else {
+        }else if(month.value != 2){
+            result();
+        } else {
             emptyRes();
             validDay.innerHTML = "Must be a valid day";
         }
